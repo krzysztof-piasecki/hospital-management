@@ -35,7 +35,7 @@ public class PositionsController {
             log.error("Couldn't save the position");
             log.error(e.getStackTrace().toString());
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, e.getStackTrace().toString()
+                    HttpStatus.BAD_REQUEST, e.getStackTrace().toString()
             );
         }
     }

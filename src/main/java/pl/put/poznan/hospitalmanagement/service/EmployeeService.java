@@ -21,7 +21,7 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public Iterable<Employee> getAllPeople() {
+    public Iterable<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
