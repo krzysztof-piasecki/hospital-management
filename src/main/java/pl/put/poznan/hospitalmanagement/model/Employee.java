@@ -17,6 +17,11 @@ public class Employee {
     private long id;
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
+    private String username;
+
+    private String password;
     @Nullable
     private String pesel;
     @Nullable
@@ -31,6 +36,8 @@ public class Employee {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", pesel='" + pesel + '\'' +
                 ", phoneNr='" + phoneNr + '\'' +
                 ", position=" + position +

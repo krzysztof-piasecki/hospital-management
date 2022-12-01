@@ -3,6 +3,7 @@ package pl.put.poznan.hospitalmanagement.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.put.poznan.hospitalmanagement.model.Employee;
@@ -13,6 +14,8 @@ import pl.put.poznan.hospitalmanagement.service.EmployeeService;
 @Slf4j
 public class EmployeeController {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private EmployeeService employeeService;
 
@@ -28,11 +31,10 @@ public class EmployeeController {
     }
 
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED, reason = "Employee has been created")
     public void saveEmployee(@RequestBody Employee employee) {
         try {
             log.info("Added emplyee: " + employee.toString());
-            employeeService.saveEmployee(employee);
+            employeeService.saveEmployee(employee, passwordEncoder);
         } catch (Exception e) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, e.getStackTrace().toString()
